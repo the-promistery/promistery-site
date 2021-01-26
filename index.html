@@ -8,17 +8,32 @@
 <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
 </head>
 <body>
-	<section class="section">
-    <div class="container">
-      <h1 class="title">
-        The Promistery
-      </h1>
-      <p class="subtitle">
-        My first website with <strong>Bulma</strong>!
-      </p>
-    </div>
-  </section>
-  <section class="section">
+	<nav class="navbar" role="navigation" aria-label="main navigation">
+	  <div class="navbar-brand">
+	    <a class="navbar-item" href="https://prmistery.com">
+	       <h1 class="title">
+        	The Promistery
+      		</h1>
+	    </a>
+
+	    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+	      <span aria-hidden="true"></span>
+	      <span aria-hidden="true"></span>
+	      <span aria-hidden="true"></span>
+	    </a>
+	  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a href="#about" class="navbar-item">
+        About Us
+      </a>
+
+      <a href="#CSA" class="navbar-item">
+       CSA
+      </a>
+</nav>
+  <section class="section" id="about">
     <div class="container">
       <h2 class="subtitle">
        Who We Are
@@ -28,7 +43,7 @@
       </p>
     </div>
   </section>
-   <section class="section">
+   <section class="section" id="about">
     <div class="container">
       <h2 class="subtitle">
        Our CSA Program
@@ -39,8 +54,7 @@
       </p>
        <p>
       	CSA members will receive local organic vegetables for a guaranteed 20 weeks starting the week of June 14th and lasting until the last week of October. Any additional harvesting weeks before or after the season will be offered at no cost to members - free food! Food will be able to be picked up twice a week (Tuesday and Friday) either from our farm or one of our pick-up locations in town.
- 
-      </p>
+	</p>
     </div>
   </section>
  <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>  
