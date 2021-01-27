@@ -581,13 +581,8 @@
                     } else {
                         const regex = /^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/;
                         var match = regex.exec(postal_code);
-                        if (match) {
-                            if ((postal_code.indexOf("-") !== -1 || postal_code.indexOf(" ") !== -1) && postal_code.length == 7) {
-                                return true;
-                            } else if ((postal_code.indexOf("-") == -1 || postal_code.indexOf(" ") == -1) && postal_code.length == 6) {
-                                return true;
-                            }
-                        } else {
+                        if (!match) {
+                           
                             errors = true;
                             $postal_code = document.getElementById('postal_code');
                             $postal_code.classList.add('is-danger');
