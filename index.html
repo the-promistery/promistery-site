@@ -127,11 +127,11 @@
             </p>
             <p></p>
             <p class="content has-text-centered">
-                <strong>The Promistery CSA Plans:</strong>
+                <strong>The Promistery CSA Share Plans:</strong>
                 <ol class="has-text-centered" type="1">
-                    <li>Single Plan - $500 ($25/wk for 20wks) - <strong>$530 value</strong></li>
-                    <li>Couple Plan - $1000 ($50/wk for 20wks) - <strong>$1120 value</strong></li>
-                    <li>Family Plan - $1500 ($75/wk for 20wks) - <strong>$1700 value</strong> </li>
+                    <li>Half Share - $500 ($25/wk for 20wks) - <strong>$530 value</strong></li>
+                    <li>Full Share - $1000 ($50/wk for 20wks) - <strong>$1120 value</strong></li>
+                    <li>Family Share - $1500 ($75/wk for 20wks) - <strong>$1700 value</strong> </li>
                 </ol>
             </p>
             <div class="card has-text-centered">
@@ -157,7 +157,6 @@
                                     <i class="fas fa-exclamation-triangle"></i>
                                 </span>
                             </div>
-                            
                         </div>
                         <div class="field">
                             <label class="label">CSA Share Type</label>
@@ -165,40 +164,51 @@
                                 <div class="field is-horizontal">
                                     <label class="label">Family Share - $1500</label>
                                     <div class="control">
-                                        <input class="input share_amount" id="family_share" type="number" placeholder="0" min="0">
+                                        <input class="input share-amount" id="family_share" type="number" placeholder="0" min="0">
                                     </div>
                                 </div>
                                 <div class="field is-horizontal">
-                                    <label class="label">Couple Share - $1000</label>
+                                    <label class="label">Full Share - $1000</label>
                                     <div class="control">
-                                        <input class="input share_amount" id="family_share" type="number" placeholder="0" min="0">
+                                        <input class="input share-amount" id="couple_share" type="number" placeholder="0" min="0">
                                     </div>
                                 </div>
                                 <div class="field is-horizontal">
-                                    <label class="label">Single Share - $500</label>
+                                    <label class="label">Half Share - $500</label>
                                     <div class="control">
-                                        <input class="input share_amount" id="family_share" type="number" placeholder="0" min="0">
+                                        <input class="input share-amount" id="single_share" type="number" placeholder="0" min="0">
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="field">
-                            <label class="label">Share Pick up</label>
+                            <label class="label">Share Pick up Location</label>
                             <div class="control">
-							                           
-							<label class="radio">
-							  <input type="radio" name="question">
-							  The Promistery
-							</label>
-							<label class="radio">
-							  <input type="radio" name="question">
-							  Central Location in St. Catharines (location TBD)
-							</label>
-							<label class="radio">
-							  <input type="radio" name="question">
-							  Delivery $5/week for 20 weeks (St Catharines)
-							</label>
-							</div>
+                                <label class="radio">
+                                    <input type="radio" id="prom_pickup" name="pickup_location" value="promistery">
+                                    The Promistery
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" id="city_pickup" name="pickup_location" value="city">
+                                    Central Location in St. Catharines (location TBD)
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" id="delivery" name="pickup_location" value="delivery">
+                                    Delivery $7.50/week for 20 weeks (St Catharines)
+                                </label>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <p class="content">If you were referred by someone, please write their name below so we can reward them!.</p>
+                            <label class="label">Referral Name</label>
+                            <div class="control">
+                                <input class="input" id="referral" type="text" placeholder="The name of the person who referred you">
+                            </div>
+                        </div>
+                        <div class="field is-horizontal">
+                            <label class="label">Total: </label>
+                            <div class="control">
+                                <input class="input" id="total" type="text" placeholder="$0" min="0">
                             </div>
                         </div>
                         <div class="field">
@@ -209,7 +219,6 @@
                                 </label>
                             </div>
                         </div>
-                      
                         <div class="field is-grouped">
                             <div class="control">
                                 <button id="form_to_pdf" class="button is-link">Download Filled Form</button>
@@ -330,13 +339,13 @@
     <section class="section" id="terms">
         <div class="container">
             <h2 class="subtitle">
-               CSA Terms
+                CSA Terms
             </h2>
             <p class="content">
                 Sometimes there are crop failures
             </p>
             <div class="content has-text-centered"><a class="button is-success is-large" href="#csa_signup_form">CSA SIGN UP</a></div>
-                </div>
+        </div>
         </div>
     </section>
     <section class="section" id="contact">
@@ -373,7 +382,11 @@
     <script defer src="js/html2pdf.bundle.js"></script>
     <script>
     document.addEventListener('DOMContentLoaded', () => {
-
+    	const CSAWEEKS = 20
+    	const DELIVERY_PRICE = 7.50
+    	const FAMILY_SHARE_PRICE = 1500
+    	const FULL_SHARE_PRICE = 1000
+    	const HALF_SHARE_PRICE = 500
         // Get all "navbar-burger" elements
         const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
 
@@ -414,8 +427,41 @@
 
             });
         }
+        const $pickupOptions = Array.prototype.slice.call(document.querySelectorAll('[name="pickup_location"]'), 0);
+        var prev = null;
+        for (var i = 0; i < $pickupOptions.length; i++) {
+            $pickupOptions[i].addEventListener('change', function() {
+            	calculateTotal()
+                if (this !== prev) {
+                    prev = this;
+                }
+               
+            });
+        }
+        const $shareTotals = Array.prototype.slice.call(document.querySelectorAll('.share-amount'), 0);
+            // Add a click event on each of them
+        $shareTotals.forEach(el => {
+            el.addEventListener('keyup', calculateTotal);
+            el.addEventListener('change', calculateTotal);
 
-    });
+        });
+
+        function calculateTotal(){
+        	const $totalDue = document.getElementById('total');
+        	const $familyShare = document.getElementById('family_share');
+        	const $fullShare = document.getElementById('couple_share');
+			const $halfShare = document.getElementById('single_share');
+			const $delivery = document.getElementById('delivery');
+
+        	let newTotal = 0;
+
+        	newTotal = $familyShare.value * FAMILY_SHARE_PRICE + $fullShare.value * FULL_SHARE_PRICE + $halfShare.value * HALF_SHARE_PRICE + (($delivery.checked)?  (DELIVERY_PRICE * CSAWEEKS) : 0); 
+
+        	$totalDue.value = '$ ' + newTotal;
+        }
+
+    
+});
     </script>
 </body>
 
