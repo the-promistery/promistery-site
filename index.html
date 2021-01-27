@@ -235,21 +235,20 @@
                                                     </div>
                                                     <p class="is-hidden form-error help is-danger" data-target="address1">Please enter your address.</p>
                                                 </div>
-                                                 <div class="field">
+                                                <div class="field">
                                                     <label class="label">Address Line 2</label>
                                                     <div class="control">
                                                         <input class="input" id="address2" type="text" placeholder="">
                                                     </div>
-                                        
                                                 </div>
-                                                 <div class="field">
+                                                <div class="field">
                                                     <label class="label">City</label>
                                                     <div class="control">
                                                         <input class="input" id="city" type="text" placeholder="">
                                                     </div>
                                                     <p class="is-hidden form-error help is-danger" data-target="city">Please enter your city.</p>
                                                 </div>
-                                                 <div class="field">
+                                                <div class="field">
                                                     <label class="label">Postal Code</label>
                                                     <div class="control">
                                                         <input class="input" id="postal_code" type="text" placeholder="">
@@ -550,6 +549,51 @@
                         $errorField = document.querySelectorAll('[data-target="pick_up_day_field"]');
                         $errorField[0].classList.remove('is-hidden');
 
+                    }
+                } else if (delivery) {
+                    const address1 = document.getElementById('address1').value;
+                    const city = document.getElementById('city').value;
+                    const postal_code = document.getElementById('postal_code').value;
+
+                    if (address1 == '') {
+                        errors = true;
+                        $address1 = document.getElementById('address1');
+                        $address1.classList.add('is-danger');
+                        $errorField = document.querySelectorAll('[data-target="address1"]');
+                        $errorField[0].classList.remove('is-hidden');
+
+                    }
+                    if (city == '') {
+                        errors = true;
+                        $city = document.getElementById('city');
+                        $city.classList.add('is-danger');
+                        $errorField = document.querySelectorAll('[data-target="city"]');
+                        $errorField[0].classList.remove('is-hidden');
+
+                    }
+                    if (postal_code == '') {
+                        errors = true;
+                        $postal_code = document.getElementById('postal_code');
+                        $postal_code.classList.add('is-danger');
+                        $errorField = document.querySelectorAll('[data-target="city"]');
+                        $errorField[0].classList.remove('is-hidden');
+
+                    } else {
+                        const regex = /^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/;
+                        var match = regex.exec(postal_code);
+                        if (match) {
+                            if ((postal_code.indexOf("-") !== -1 || postal_code.indexOf(" ") !== -1) && postal_code.length() == 7) {
+                                return true;
+                            } else if ((postal_code.indexOf("-") == -1 || postal_code.indexOf(" ") == -1) && postal_code.length() == 6) {
+                                return true;
+                            }
+                        } else {
+                            errors = true;
+                            $postal_code = document.getElementById('postal_code');
+                            $postal_code.classList.add('is-danger');
+                            $errorField = document.querySelectorAll('[data-target="postal_code"]');
+                            $errorField[0].classList.remove('is-hidden');
+                        }
                     }
                 }
 
