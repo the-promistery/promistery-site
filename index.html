@@ -18,7 +18,7 @@
     		 list-style-position: inside;
     	}
     	.hero.is-primary.is-bold.hero-promistery {
-    		background-image: url("images/fresh_header.jpg"),linear-gradient(141deg,#009e6c 0,#00d1b2 71%,#00e7eb 100%);
+    		background-image: url("images/header.jpg"),linear-gradient(141deg,#009e6c 0,#00d1b2 71%,#00e7eb 100%);
     		background-size: cover;
 		}
 		.label{
@@ -113,14 +113,14 @@
             <div class="columns">
                 <div class="column">
                     <picture>
-                        <source srcset="images/promistery_share.jpg">
-                        <img src="images/promistery_share.jpg" alt="logo">
+                        <source srcset="images/new2.jpg">
+                        <img src="images/new2.jpg" alt="logo">
                     </picture>
                 </div>
                 <div class="column">
                     <picture>
-                        <source srcset="images/promistery_share.jpg">
-                        <img src="images/promistery_share.jpg" alt="logo">
+                        <source srcset="images/new10.jpg">
+                        <img src="images/new10.jpg" alt="logo">
                     </picture>
                 </div>
             </div>
@@ -289,14 +289,14 @@
             <div class="columns">
                 <div class="column">
                     <picture>
-                        <source srcset="images/let_rad.jpg">
-                        <img src="images/let_rad.jpg" alt="logo">
+                        <source srcset="images/new4.jpg">
+                        <img src="images/new4.jpg" alt="logo">
                     </picture>
                 </div>
                 <div class="column">
                     <picture>
-                        <source srcset="images/promistery_share.jpg">
-                        <img src="images/promistery_share.jpg" alt="logo">
+                        <source srcset="images/new3.jpg">
+                        <img src="images/new3.jpg" alt="logo">
                     </picture>
                 </div>
             </div>
@@ -508,6 +508,20 @@
             		$terms_field.classList.add('is-danger-field');
             		$errorField = document.querySelectorAll('[data-target="share_pick_up_location"]');
             		$errorField[0].classList.remove('is-hidden');
+            	}
+            	else if(prom_pickup){
+            		const pick_up_day_tuesday = document.getElementById('pick_up_day_tuesday').checked;
+            		const pick_up_day_friday = document.getElementById('pick_up_day_friday').checked;
+
+            		if(!pick_up_day_tuesday && !pick_up_day_friday)
+	            	{
+	            		errors = true;
+	            		$terms_field = document.getElementById('pick_up_day_field');
+	            		$terms_field.classList.add('is-danger-field');
+	            		$errorField = document.querySelectorAll('[data-target="pick_up_day_field"]');
+	            		$errorField[0].classList.remove('is-hidden');
+	            		
+	            	}
             	}
 
             	const familyShare = document.getElementById('family_share').value;
