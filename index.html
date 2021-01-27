@@ -25,6 +25,11 @@
 			padding-right: 1.5rem;
 			padding-top: .375em;
 		}
+		.is-danger-field{
+			border: 1px solid #f14668;
+			padding: .5rem;
+			border-radius: 4px;
+		}
 		.font--acme{
 			font-family: 'Acme', sans-serif;
 		}
@@ -143,22 +148,22 @@
                         <div class="field">
                             <label class="label">Name</label>
                             <div class="control">
-                                <input class="input" type="text" placeholder="Firstname, Surname">
+                                <input class="input" id="csa_form_name" type="text" placeholder="Firstname, Surname">
                             </div>
+                            <p class="is-hidden form-error help is-danger" data-target="csa_form_name">Please enter your name.</p>
                         </div>
                         <div class="field">
                             <label class="label">Email</label>
                             <div class="control has-icons-left has-icons-right">
-                                <input class="input" type="email" placeholder="hello@email.com">
+                                <input class="input" id="csa_form_email" type="email" placeholder="hello@email.com">
                                 <span class="icon is-small is-left">
                                     <i class="fas fa-envelope"></i>
                                 </span>
-                                <span class="icon is-small is-right">
-                                    <i class="fas fa-exclamation-triangle"></i>
-                                </span>
+                               
                             </div>
+                            <p class=" is-hidden form-error help is-danger" data-target="csa_form_email">This email is invalid</p>
                         </div>
-                        <div class="field">
+                        <div class="field" id="share_type">
                             <label class="label">CSA Share Type</label>
                             <div class="control">
                                 <div class="field is-horizontal">
@@ -180,27 +185,56 @@
                                     </div>
                                 </div>
                             </div>
+                            <p class="is-hidden form-error help is-danger" data-target="share_type">Please choose a Share type</p>
                         </div>
-                        <div class="field">
+                        <div class="field" id="share_pick_up_location">
                             <label class="label">Share Pick up Location</label>
                             <div class="control">
-                                <label class="radio">
-                                    <input type="radio" id="prom_pickup" name="pickup_location" value="promistery">
-                                    The Promistery
-                                </label>
-                                <label class="radio">
-                                    <input type="radio" id="city_pickup" name="pickup_location" value="city">
-                                    Central Location in St. Catharines (location TBD)
-                                </label>
-                                <label class="radio">
-                                    <input type="radio" id="delivery" name="pickup_location" value="delivery">
-                                    Delivery $7.50/week for 20 weeks (St Catharines)
-                                </label>
+                                <div class="field">
+                                    <div class="control">
+                                        <label class="radio">
+                                            <input type="radio" id="prom_pickup" name="pickup_location" value="promistery">
+                                            The Promistery
+                                        </label>
+                                        <div class="field is-hidden mt-3 ml-5 mb-5" id="pick_up_day_field">
+                                            <label class="label">Pick up Day</label>
+                                            <div class="control">
+                                                <label class="radio">
+                                                    <input type="radio" id="pick_up_day_tuesday" name="pick_up_day" value="tuesday">
+                                                    Tuesday
+                                                </label>
+                                                <label class="radio">
+                                                    <input type="radio" id="pick_up_day_friday" name="pick_up_day" value="friday">
+                                                    Friday
+                                                </label>
+                                            </div>
+                                            <p class="is-hidden form-error help is-danger" data-target="pick_up_day_field">Please pick a pickup day</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="control">
+                                        <label class="radio">
+                                            <input type="radio" id="city_pickup" name="pickup_location" value="city">
+                                            Central Location in St. Catharines (location TBD)
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="control">
+                                        <label class="radio">
+                                            <input type="radio" id="delivery" name="pickup_location" value="delivery">
+                                            Delivery $7.50/week for 20 weeks (St Catharines)
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
+                            <p class="is-hidden form-error help is-danger" data-target="share_pick_up_location">Please choose a pickup point</p>
                         </div>
                         <div class="field">
-                            <p class="content">If you were referred by someone, please write their name below so we can reward them!.</p>
+                            
                             <label class="label">Referral Name</label>
+                            <p class="content">If you were referred by someone, please write their name below so we can reward them!.</p>
                             <div class="control">
                                 <input class="input" id="referral" type="text" placeholder="The name of the person who referred you">
                             </div>
@@ -211,12 +245,13 @@
                                 <input class="input" id="total" type="text" placeholder="$0" min="0">
                             </div>
                         </div>
-                        <div class="field">
+                        <div class="field" id="terms_field">
                             <div class="control">
                                 <label class="checkbox">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="terms_and_conditions">
                                     I agree to the <a href="#terms">terms and conditions</a>
                                 </label>
+                                <p class="is-hidden form-error help is-danger" data-target="terms_and_conditions">Accept the terms to continue.</p>
                             </div>
                         </div>
                         <div class="field is-grouped">
@@ -382,11 +417,11 @@
     <script defer src="js/html2pdf.bundle.js"></script>
     <script>
     document.addEventListener('DOMContentLoaded', () => {
-    	const CSAWEEKS = 20
-    	const DELIVERY_PRICE = 7.50
-    	const FAMILY_SHARE_PRICE = 1500
-    	const FULL_SHARE_PRICE = 1000
-    	const HALF_SHARE_PRICE = 500
+        const CSAWEEKS = 20
+        const DELIVERY_PRICE = 7.50
+        const FAMILY_SHARE_PRICE = 1500
+        const FULL_SHARE_PRICE = 1000
+        const HALF_SHARE_PRICE = 500
         // Get all "navbar-burger" elements
         const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
 
@@ -413,55 +448,149 @@
 
             $formToPDF.addEventListener('click', () => {
 
-                var element = document.getElementById('csa_signup_form');
-                var opt = {
-                    margin: 1,
-                    filename: 'promistery_csa_form.pdf',
-                    image: { type: 'jpeg', quality: 0.98 },
-                    html2canvas: { scale: 2 },
-                    jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
-                };
+            	let errors = false;
+            	//turn off all error
+            	let $formErrors = Array.prototype.slice.call(document.querySelectorAll('.form-error'), 0);
+            	$formErrors.forEach(el => {
+	               el.classList.add("is-hidden")
+            	});
+                $formErrors = Array.prototype.slice.call(document.querySelectorAll('.is-danger-field'), 0);
+            	$formErrors.forEach(el => {
+	               el.classList.remove("is-danger-field")
+            	});
+            	$formErrors = Array.prototype.slice.call(document.querySelectorAll('input.is-danger'), 0);
+            	$formErrors.forEach(el => {
+	               el.classList.remove("is-danger")
+            	});
+            	//validate form
+            	$termsConditions = document.getElementById('terms_and_conditions');
 
-                // New Promise-based usage:
-                html2pdf().set(opt).from(element).save();
+            	if(!$termsConditions.checked)
+            	{
+            		errors = true;
+            		$terms_field = document.getElementById('terms_field');
+            		$terms_field.classList.add('is-danger-field');
+            		$errorField = document.querySelectorAll('[data-target="terms_and_conditions"]');
+            		$errorField[0].classList.remove('is-hidden');
 
+            	}
+            	
+            	$applicantName = document.getElementById('csa_form_name');
+            	if($applicantName.value=="")
+            	{
+            		errors = true;
+            		
+            		$applicantName.classList.add('is-danger');
+            		$errorField = document.querySelectorAll('[data-target="csa_form_name"]');
+            		$errorField[0].classList.remove('is-hidden');
+
+            	}
+
+            	$email = document.getElementById('csa_form_email');
+            	if($email.value=="")
+            	{
+            		errors = true;
+            		
+            		$email.classList.add('is-danger');
+            		$errorField = document.querySelectorAll('[data-target="csa_form_email"]');
+            		$errorField[0].classList.remove('is-hidden');
+
+            	}
+
+            	const prom_pickup = document.getElementById('prom_pickup').checked;
+            	const city_pickup = document.getElementById('city_pickup').checked;
+            	const delivery = document.getElementById('delivery').checked;
+            	
+            	if(!prom_pickup && !city_pickup  && !delivery)
+            	{
+            		errors = true;
+            		$terms_field = document.getElementById('share_pick_up_location');
+            		$terms_field.classList.add('is-danger-field');
+            		$errorField = document.querySelectorAll('[data-target="share_pick_up_location"]');
+            		$errorField[0].classList.remove('is-hidden');
+            	}
+
+            	const familyShare = document.getElementById('family_share').value;
+            	const fullShare = document.getElementById('couple_share').value;
+            	const halfShare = document.getElementById('single_share').value;
+            	
+            	if(familyShare == "" && fullShare == "" && halfShare == "")
+            	{
+            		errors = true;
+            		$terms_field = document.getElementById('share_type');
+            		$terms_field.classList.add('is-danger-field');
+            		$errorField = document.querySelectorAll('[data-target="share_type"]');
+            		$errorField[0].classList.remove('is-hidden');
+            	}
+            	
+            	if(!errors){
+	            	//create pdf
+	                var element = document.getElementById('csa_signup_form');
+	                var opt = {
+	                    margin: 1,
+	                    filename: 'promistery_csa_form.pdf',
+	                    image: { type: 'jpeg', quality: 0.98 },
+	                    html2canvas: { scale: 2 },
+	                    jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+	                };
+
+	                // New Promise-based usage:
+	                html2pdf().set(opt).from(element).save();
+            	}
             });
         }
         const $pickupOptions = Array.prototype.slice.call(document.querySelectorAll('[name="pickup_location"]'), 0);
         var prev = null;
         for (var i = 0; i < $pickupOptions.length; i++) {
             $pickupOptions[i].addEventListener('change', function() {
-            	calculateTotal()
+                calculateTotal()
+
+                const $prom_pickup = document.getElementById('prom_pickup');
+                const $delivery = document.getElementById('delivery');
+
+                ($delivery.checked) ? true: true;
+
+                ($prom_pickup.checked) ? document.getElementById('pick_up_day_field').classList.remove("is-hidden"): document.getElementById('pick_up_day_field').classList.add("is-hidden");
+
+                if (!prev) {
+                    if (this.value == 'delivery') {
+                        //toggle address
+                    }
+                } else if (prev.value == 'delivery' && this.value !== 'delivery') {
+                    //toggle address field of
+                } else if (this.value == 'delivery') {
+                    //toggle address
+                }
                 if (this !== prev) {
                     prev = this;
                 }
-               
+
             });
         }
         const $shareTotals = Array.prototype.slice.call(document.querySelectorAll('.share-amount'), 0);
-            // Add a click event on each of them
+        // Add a click event on each of them
         $shareTotals.forEach(el => {
             el.addEventListener('keyup', calculateTotal);
             el.addEventListener('change', calculateTotal);
 
         });
 
-        function calculateTotal(){
-        	const $totalDue = document.getElementById('total');
-        	const $familyShare = document.getElementById('family_share');
-        	const $fullShare = document.getElementById('couple_share');
-			const $halfShare = document.getElementById('single_share');
-			const $delivery = document.getElementById('delivery');
+        function calculateTotal() {
+            const $totalDue = document.getElementById('total');
+            const $familyShare = document.getElementById('family_share');
+            const $fullShare = document.getElementById('couple_share');
+            const $halfShare = document.getElementById('single_share');
+            const $delivery = document.getElementById('delivery');
 
-        	let newTotal = 0;
+            let newTotal = 0;
 
-        	newTotal = $familyShare.value * FAMILY_SHARE_PRICE + $fullShare.value * FULL_SHARE_PRICE + $halfShare.value * HALF_SHARE_PRICE + (($delivery.checked)?  (DELIVERY_PRICE * CSAWEEKS) : 0); 
+            newTotal = $familyShare.value * FAMILY_SHARE_PRICE + $fullShare.value * FULL_SHARE_PRICE + $halfShare.value * HALF_SHARE_PRICE + (($delivery.checked) ? (DELIVERY_PRICE * CSAWEEKS) : 0);
 
-        	$totalDue.value = '$ ' + newTotal;
+            $totalDue.value = '$ ' + newTotal;
         }
 
-    
-});
+
+    });
     </script>
 </body>
 
