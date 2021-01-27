@@ -21,6 +21,10 @@
     		background-image: url("images/fresh_header.jpg"),linear-gradient(141deg,#009e6c 0,#00d1b2 71%,#00e7eb 100%);
     		background-size: cover;
 		}
+		.label{
+			padding-right: 1.5rem;
+			padding-top: .375em;
+		}
 		.font--acme{
 			font-family: 'Acme', sans-serif;
 		}
@@ -135,6 +139,83 @@
                     <p class="title">
                         For CSA sign-up, ordering and all other enquiries, email us at:
                     </p>
+                    <form id="csa_signup_form" class="has-text-left">
+                        <div class="field">
+                            <label class="label">Name</label>
+                            <div class="control">
+                                <input class="input" type="text" placeholder="Firstname, Surname">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Email</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input class="input" type="email" placeholder="hello@email.com">
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-envelope"></i>
+                                </span>
+                                <span class="icon is-small is-right">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </span>
+                            </div>
+                            
+                        </div>
+                        <div class="field">
+                            <label class="label">CSA Share Type</label>
+                            <div class="control">
+                                <div class="field is-horizontal">
+                                    <label class="label">Family Share - $1500</label>
+                                    <div class="control">
+                                        <input class="input share_amount" id="family_share" type="number" placeholder="0" min="0">
+                                    </div>
+                                </div>
+                                <div class="field is-horizontal">
+                                    <label class="label">Couple Share - $1000</label>
+                                    <div class="control">
+                                        <input class="input share_amount" id="family_share" type="number" placeholder="0" min="0">
+                                    </div>
+                                </div>
+                                <div class="field is-horizontal">
+                                    <label class="label">Single Share - $500</label>
+                                    <div class="control">
+                                        <input class="input share_amount" id="family_share" type="number" placeholder="0" min="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Share Pick up</label>
+                            <div class="control">
+							                           
+							<label class="radio">
+							  <input type="radio" name="question">
+							  The Promistery
+							</label>
+							<label class="radio">
+							  <input type="radio" name="question">
+							  Central Location in St. Catharines (location TBD)
+							</label>
+							<label class="radio">
+							  <input type="radio" name="question">
+							  Delivery $5/week for 20 weeks (St Catharines)
+							</label>
+							</div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="control">
+                                <label class="checkbox">
+                                    <input type="checkbox">
+                                    I agree to the <a href="#terms">terms and conditions</a>
+                                </label>
+                            </div>
+                        </div>
+                      
+                        <div class="field is-grouped">
+                            <div class="control">
+                                <button id="form_to_pdf" class="button is-link">Download Filled Form</button>
+                            </div>
+                        </div>
+                    </form>
                     <div class="content"><a class="button is-primary is-large" href="mailto:promistery@protonmail.com">promistery@protonmail.com</a></div>
                 </div>
                 <footer class="card-footer">
@@ -246,6 +327,18 @@
             </div>
         </div>
     </section>
+    <section class="section" id="terms">
+        <div class="container">
+            <h2 class="subtitle">
+               CSA Terms
+            </h2>
+            <p class="content">
+                Sometimes there are crop failures
+            </p>
+            <div class="content has-text-centered"><a class="button is-success is-large" href="#csa_signup_form">CSA SIGN UP</a></div>
+                </div>
+        </div>
+    </section>
     <section class="section" id="contact">
         <div class="container">
             <h2 class="subtitle">
@@ -302,20 +395,27 @@
                 });
             });
         }
+        const $formToPDF = document.getElementById('form_to_pdf');
+        if ($formToPDF) {
+
+            $formToPDF.addEventListener('click', () => {
+
+                var element = document.getElementById('csa_signup_form');
+                var opt = {
+                    margin: 1,
+                    filename: 'promistery_csa_form.pdf',
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2 },
+                    jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+                };
+
+                // New Promise-based usage:
+                html2pdf().set(opt).from(element).save();
+
+            });
+        }
 
     });
-
-    var element = document.getElementById('element-to-print');
-    var opt = {
-        margin: 1,
-        filename: 'promistery_csa_form.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
-    };
-
-    // New Promise-based usage:
-    html2pdf().set(opt).from(element).save();
     </script>
 </body>
 
