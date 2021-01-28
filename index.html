@@ -17,6 +17,31 @@
         ol{
     		 list-style-position: inside;
     	}
+    	.faux-button{
+		    background-color: #fff;
+		    border-color: #dbdbdb;
+		    border-width: 1px;
+		    color: #fff;
+		    justify-content: center;
+		    padding-bottom: calc(.5em - 1px);
+		    padding-left: 1em;
+		    padding-right: 1em;
+		    padding-top: calc(.5em - 1px);
+		    text-align: center;
+		    white-space: nowrap;
+
+		    font-size: 1.5rem;
+
+		    position: relative;
+		    vertical-align: top;
+		    line-height: 1.5;
+		    height: 2.5em;
+		    align-items: center;
+		    border: 1px solid transparent;
+		    border-radius: 4px;
+		    box-shadow: none;
+		    display: inline-flex;
+    	}
     	.hero.is-primary.is-bold.hero-promistery {
     		background-image: url("images/header.jpg"),linear-gradient(141deg,#009e6c 0,#00d1b2 71%,#00e7eb 100%);
     		background-size: cover;
@@ -291,7 +316,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="content"><a class="button is-primary is-large" href="mailto:promistery@protonmail.com">promistery@protonmail.com</a></div>
+                    <div class="content">
+                        <span id="promistery_email_address" class="faux-button is-primary is-large has-background-primary">promistery@protonmail.com</span>
+                        <a class="button is-primary is-large" id="copy_email_1"><i class="fas fa-copy"></i></a>
+                    </div>
                 </div>
                 <footer class="card-footer">
                     <p class="card-footer-item">
@@ -424,7 +452,8 @@
                     <p class="title">
                         For CSA sign-up, ordering and all other enquiries, email us at:
                     </p>
-                    <div class="content"><a class="button is-primary is-large" href="mailto:promistery@protonmail.com">promistery@protonmail.com</a></div>
+                    <span id="promistery_email_address_2" class="faux-button is-primary is-large has-background-primary">promistery@protonmail.com</span>
+                        <a class="button is-primary is-large" id="copy_email_2"><i class="fas fa-copy"></i></a>
                 </div>
             </div>
         </div>
@@ -582,7 +611,7 @@
                         const regex = /^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/;
                         var match = regex.exec(postal_code);
                         if (!match) {
-                           
+
                             errors = true;
                             $postal_code = document.getElementById('postal_code');
                             $postal_code.classList.add('is-danger');
@@ -669,8 +698,18 @@
 
             $totalDue.value = '$ ' + newTotal;
         }
+        function copy() {
+			let copyText = document.querySelector("#promistery_email_address");
+		  	let textArea = document.createElement("textarea");
+    	 	textArea.value = copyText.textContent;
+		  	document.body.appendChild(textArea);
+	    	textArea.select();
+	    	document.execCommand("Copy");
+	    	textArea.remove();
+		}
 
-
+		document.querySelector("#copy_email_1").addEventListener("click", copy);
+        document.querySelector("#copy_email_2").addEventListener("click", copy);
     });
     </script>
 </body>
