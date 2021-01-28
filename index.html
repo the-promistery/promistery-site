@@ -281,15 +281,15 @@
                             <div class="field">
                                 <div class="control">
                                     <label class="radio">
-                                        <input type="radio" id="free_choice" name="pick_up_day" value="tuesday">
-                                        Free Choice - You choose the contents of this weeks share
+                                        <input type="radio" id="free_choice" name="choice_type" value="my_choice">
+                                        My Choice - You choose the contents of this weeks share
                                     </label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="control">
                                     <label class="radio">
-                                        <input type="radio" id="promistery_picks" name="pick_up_day" value="friday">
+                                        <input type="radio" id="promistery_picks" name="choice_type" value="promistery">
                                         Promistery Picks - We pack the box with an assortment of the available produce
                                     </label>
                                 </div>
@@ -650,7 +650,7 @@
         </div>
     </footer>
     <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
-    <script defer src="js/html2pdf.bundle.js"></script>
+    <script defer src="js/html2pdf.bundle.min.js"></script>
     <script>
     document.addEventListener('DOMContentLoaded', () => {
         const CSAWEEKS = 20
