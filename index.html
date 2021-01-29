@@ -259,6 +259,7 @@
                     If the form funstionality is not working, please download <a href="">this form</a>, fill it out, and email it to us.
                 </p>
                 <div id="csa_signup_form" class="has-text-left">
+                	<div id="csa_signup_form_pdf_print">
                     <div class="field">
                         <label class="label">Name</label>
                         <div class="control">
@@ -417,10 +418,40 @@
                                 <input class="input" id="referral" type="text">
                             </div>
                         </div>
+                        <div class="field" id="payment_preference">
+                        <label class="label">Payment Preference</label>
+                        <div class="control">
+                            <div class="field">
+                                <div class="control">
+                                    <label class="radio">
+                                        <input type="radio" id="pp_etranfer" name="payment_preference_rad" value="etransfer">
+                                        E-Transfer
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <label class="radio">
+                                        <input type="radio" id="pp_cash" name="payment_preference_rad" value="cash">
+                                        Cash
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <label class="radio">
+                                        <input type="radio" id="pp_square" name="payment_preference_rad" value="square">
+                                        Square Invoice - Credit/Debit + <b>2.9% Merchant Fee</b>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="is-hidden form-error help is-danger" data-target="payment_preference">Please choose how you will like to pay.</p>
+                    </div>
                         <div class="field is-horizontal">
                             <label class="label">Total: </label>
                             <div class="control">
-                                <input class="input" id="total" type="text" placeholder="$0" min="0">
+                                <input class="input" id="total" type="text" disabled placeholder="$0" min="0">
                             </div>
                         </div>
                         <div class="field" id="terms_field">
@@ -431,6 +462,7 @@
                                 </label>
                                 <p class="is-hidden form-error help is-danger" data-target="terms_and_conditions">Accept the terms to continue.</p>
                             </div>
+                        </div>
                         </div>
                         <div class="field is-grouped">
                             <div class="control">
@@ -479,9 +511,6 @@
                         </picture>
                     </div>
                 </div>
-                <p class="content">
-                    The Promistery is a family owned no-till, organically grown, farm located in St. Catharines, Ontario. We started out in 2020 with hopes of bringing healthy produce to our local community free of pesticides and other harmful fertilizers. We currently offer flowers, herbs and vegetables, and are looking to expand in the future.
-                </p>
         </div>
     </section>
     <section class="section" id="harvest_list">
@@ -844,14 +873,26 @@
                     $errorField[0].classList.remove('is-hidden');
                 }
 
+                const pp_etranfer = document.getElementById('pp_etranfer').checked;
+                const pp_cash = document.getElementById('pp_cash').checked;
+                const pp_square = document.getElementById('pp_square').checked;
+
+                if (!pp_etranfer && !pp_cash && !pp_square) {
+                    errors = true;
+                    $terms_field = document.getElementById('payment_preference');
+                    $terms_field.classList.add('is-danger-field');
+                    $errorField = document.querySelectorAll('[data-target="payment_preference"]');
+                    $errorField[0].classList.remove('is-hidden');
+                }
+
                 if (!errors) {
                     //create pdf
-                    var element = document.getElementById('csa_signup_form');
+                    var element = document.getElementById('csa_signup_form_pdf_print');
                     var opt = {
                         margin: 1,
                         filename: 'promistery_csa_form.pdf',
                         image: { type: 'jpeg', quality: 0.98 },
-                        html2canvas: { scale: 2 },
+                        html2canvas: { scale: 2, windowWidth: 1024 },
                         jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
                     };
 
