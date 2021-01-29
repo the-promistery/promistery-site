@@ -446,13 +446,13 @@
                     <div class="column">
                         <picture>
                             <source srcset="images/comp/new4.jpg">
-                            <img src="images/comp/new4.jpg" alt="logo">
+                            <img class="lazyload" data-src="images/comp/new4.jpg" alt="logo">
                         </picture>
                     </div>
                     <div class="column">
                         <picture>
                             <source srcset="images/comp/new3.jpg">
-                            <img src="images/comp/new3.jpg" alt="logo">
+                            <img class="lazyload" data-src="images/comp/new3.jpg" alt="logo">
                         </picture>
                     </div>
                 </div>
@@ -651,6 +651,7 @@
     </footer>
     <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
     <script defer src="js/html2pdf.bundle.min.js"></script>
+    <script src="js/lazysizes.min.js" async></script>
     <script>
     document.addEventListener('DOMContentLoaded', () => {
         const CSAWEEKS = 20
