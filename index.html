@@ -397,6 +397,8 @@
                                                 <div class="control">
                                                     <input class="input" id="telephone" type="text" placeholder="">
                                                 </div>
+                                                <p class="is-hidden form-error help is-danger" data-target="telephone">Please enter your phone number, so we can contact you incase of an issue with delivery.</p>
+                                            </div>
                                                 <div class="field">
                                                     <label class="label">Buzzer</label>
                                                     <div class="control">
@@ -735,6 +737,7 @@
                 });
             });
         }
+
         const $formToPDF = document.getElementById('form_to_pdf');
         if ($formToPDF) {
 
@@ -812,6 +815,7 @@
                     const address1 = document.getElementById('address1').value;
                     const city = document.getElementById('city').value;
                     const postal_code = document.getElementById('postal_code').value;
+                    const telephone = document.getElementById('telephone').value;
 
                     if (address1 == '') {
                         errors = true;
@@ -829,11 +833,19 @@
                         $errorField[0].classList.remove('is-hidden');
 
                     }
+                    if (telephone == '') {
+                        errors = true;
+                        $city = document.getElementById('telephone');
+                        $city.classList.add('is-danger');
+                        $errorField = document.querySelectorAll('[data-target="telephone"]');
+                        $errorField[0].classList.remove('is-hidden');
+
+                    }
                     if (postal_code == '') {
                         errors = true;
                         $postal_code = document.getElementById('postal_code');
                         $postal_code.classList.add('is-danger');
-                        $errorField = document.querySelectorAll('[data-target="city"]');
+                        $errorField = document.querySelectorAll('[data-target="postal_code"]');
                         $errorField[0].classList.remove('is-hidden');
 
                     } else {
@@ -902,7 +914,7 @@
             });
         }
         const $pickupOptions = Array.prototype.slice.call(document.querySelectorAll('[name="pickup_location"]'), 0);
-        var prev = null;
+        
         for (var i = 0; i < $pickupOptions.length; i++) {
             $pickupOptions[i].addEventListener('change', function() {
                 calculateTotal()
@@ -913,20 +925,6 @@
                 ($delivery.checked) ? document.getElementById('address_field').classList.remove("is-hidden"): document.getElementById('address_field').classList.add("is-hidden");
 
                 ($prom_pickup.checked) ? document.getElementById('pick_up_day_field').classList.remove("is-hidden"): document.getElementById('pick_up_day_field').classList.add("is-hidden");
-
-                if (!prev) {
-                    if (this.value == 'delivery') {
-                        //toggle address
-                    }
-                } else if (prev.value == 'delivery' && this.value !== 'delivery') {
-                    //toggle address field of
-                } else if (this.value == 'delivery') {
-                    //toggle address
-                }
-                if (this !== prev) {
-                    prev = this;
-                }
-
             });
         }
         const $shareTotals = Array.prototype.slice.call(document.querySelectorAll('.share-amount'), 0);
