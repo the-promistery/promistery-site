@@ -99,6 +99,10 @@
 		.font--acme{
 			font-family: 'Acme', serif;
 		}
+		.print_field{
+			min-width: 300px
+			border-bottom: 1px solid;
+		}
     </style>
 </head>
 
@@ -187,14 +191,12 @@
         <div class="content has-text-centered"><a class="button is-success is-large" href="#csa_signup_form">CSA SIGN UP</a></div>
         <p class="content">CSA's typically run for a set number of weeks. Our members will receive local organically grown produce for a guaranteed 20 weeks from the week of June 14 to the last week of October. Any weeks before or after then where we have food available will be provided gratis to members! If we have produce ready before June or after November we will let you know and you will get those week for free!</p>
         <p class="content">The CSA is a Free Choice CSA, meaning that members are able to choose what is in their share each week. If the memebers do not want to do a free choice CSA they can opt for a tradional CSA where we pick and prepare your share for you.</p>
-        
         <p class="content">Points are alloted every week to each share type.
             Members use their points to redeem produce. For example: a 3 heads of lettuce is 6 points, a pound of zuchhini is 4 points, a bunch of radish is 7 points, a bunch Kale is 7 points, and a pint of tomatoes is 10 points, add up to 46 points. If you have the Half Share (54 points) you would have 8 points left over for other produce. Each point is equivalent to about $.50. A half share is 54 points with a value of $27 at a price of $25 a week for a total price of $500 for the season. Over the whole season that $40 dollars of savings, with the family share the savings are $200! If there are a couple of points left at the end of the week but not enout to redeem an item we will round them up to an item with a close point value. </p>
-
-            <div class="content">   <strong>The Promistery CSA Share Plans:</strong>
+        <div class="content"> <strong>The Promistery CSA Share Plans:</strong>
             <ol class="" type="1">
-            	<li>Family Share - $1500 (173 points/wk @ $75/wk for 20wks) - <strong>$1700 value</strong> </li>
-                 <li>Full Share - $1000 (112 points/wk @ $50/wk for 20wks) - <strong>$1120 value</strong></li>
+                <li>Family Share - $1500 (173 points/wk @ $75/wk for 20wks) - <strong>$1700 value</strong> </li>
+                <li>Full Share - $1000 (112 points/wk @ $50/wk for 20wks) - <strong>$1120 value</strong></li>
                 <li>Half Share - $500 (54 points/wk @ $25/wk for 20wks) - <strong>$540 value</strong></li>
             </ol>
         </div>
@@ -248,7 +250,6 @@
                     We will send a Square invoice. To be paid by the first CSA date.
                 </li>
         </div>
-       
         <div class="card has-text-centered">
             <div class="card-content">
                 <p class="title">
@@ -259,146 +260,146 @@
                     If the form funstionality is not working, please download <a href="resources/Promistery CSA Registration Form.docx">this form</a>, fill it out, and email it to us.
                 </p>
                 <div id="csa_signup_form" class="has-text-left">
-                	<div id="csa_signup_form_pdf_print">
-                    <div class="field">
-                        <label class="label">Name</label>
-                        <div class="control">
-                            <input class="input" id="csa_form_name" type="text" placeholder="Firstname, Surname">
+                    <div id="csa_signup_form_pdf_print">
+                        <div class="field">
+                            <label class="label">Name</label>
+                            <div class="control">
+                                <input class="input" id="csa_form_name" type="text" placeholder="Firstname, Surname">
+                            </div>
+                            <p class="is-hidden form-error help is-danger" data-target="csa_form_name">Please enter your name.</p>
                         </div>
-                        <p class="is-hidden form-error help is-danger" data-target="csa_form_name">Please enter your name.</p>
-                    </div>
-                    <div class="field">
-                        <label class="label">Email</label>
-                        <div class="control has-icons-left has-icons-right">
-                            <input class="input" id="csa_form_email" type="email" placeholder="hello@email.com">
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-envelope"></i>
-                            </span>
+                        <div class="field">
+                            <label class="label">Email</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input class="input" id="csa_form_email" type="email" placeholder="hello@email.com">
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-envelope"></i>
+                                </span>
+                            </div>
+                            <p class=" is-hidden form-error help is-danger" data-target="csa_form_email">This email is invalid</p>
                         </div>
-                        <p class=" is-hidden form-error help is-danger" data-target="csa_form_email">This email is invalid</p>
-                    </div>
-                    <div class="field" id="share_type">
-                        <label class="label">CSA Share Bounty Size</label>
-                        <div class="control">
-                            <div class="field is-horizontal">
-                                <label class="label">Family Share - $1500</label>
-                                <div class="control">
-                                    <input class="input share-amount" id="family_share" type="number" placeholder="0" min="0">
+                        <div class="field" id="share_type">
+                            <label class="label">CSA Share Bounty Size</label>
+                            <div class="control">
+                                <div class="field is-horizontal">
+                                    <label class="label">Family Share - $1500</label>
+                                    <div class="control">
+                                        <input class="input share-amount" id="family_share" type="number" placeholder="0" min="0">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="field is-horizontal">
-                                <label class="label">Full Share - $1000</label>
-                                <div class="control">
-                                    <input class="input share-amount" id="couple_share" type="number" placeholder="0" min="0">
+                                <div class="field is-horizontal">
+                                    <label class="label">Full Share - $1000</label>
+                                    <div class="control">
+                                        <input class="input share-amount" id="couple_share" type="number" placeholder="0" min="0">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="field is-horizontal">
-                                <label class="label">Half Share - $500</label>
-                                <div class="control">
-                                    <input class="input share-amount" id="single_share" type="number" placeholder="0" min="0">
-                                </div>
-                            </div>
-                        </div>
-                        <p class="is-hidden form-error help is-danger" data-target="share_type">Please choose a Share Size!</p>
-                    </div>
-                    <div class="field" id="who_chooses_field">
-                        <label class="label">CSA Who Chooses?</label>
-                        <div class="control">
-                            <div class="field">
-                                <div class="control">
-                                    <label class="radio">
-                                        <input type="radio" id="free_choice" name="choice_type" value="my_choice">
-                                        My Choice - You choose the contents of this weeks share
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="control">
-                                    <label class="radio">
-                                        <input type="radio" id="promistery_picks" name="choice_type" value="promistery">
-                                        Promistery Picks - We pack the box with an assortment of the available produce
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="is-hidden form-error help is-danger" data-target="who_chooses_field">Who would you like to choose the share contents?</p>
-                    </div>
-                    <div class="field" id="share_pick_up_location">
-                        <label class="label">Share Pick up Location</label>
-                        <div class="control">
-                            <div class="field">
-                                <div class="control">
-                                    <label class="radio">
-                                        <input type="radio" id="prom_pickup" name="pickup_location" value="promistery">
-                                        The Promistery
-                                    </label>
-                                    <div class="field is-hidden mt-3 ml-5 mb-5" id="pick_up_day_field">
-                                        <label class="label">Pick up Day</label>
-                                        <div class="control">
-                                            <label class="radio">
-                                                <input type="radio" id="pick_up_day_tuesday" name="pick_up_day" value="tuesday">
-                                                Tuesday
-                                            </label>
-                                            <label class="radio">
-                                                <input type="radio" id="pick_up_day_friday" name="pick_up_day" value="friday">
-                                                Friday
-                                            </label>
-                                        </div>
-                                        <p class="is-hidden form-error help is-danger" data-target="pick_up_day_field">Please pick a pickup day</p>
+                                <div class="field is-horizontal">
+                                    <label class="label">Half Share - $500</label>
+                                    <div class="control">
+                                        <input class="input share-amount" id="single_share" type="number" placeholder="0" min="0">
                                     </div>
                                 </div>
                             </div>
-                            <div class="field">
-                                <div class="control">
-                                    <label class="radio">
-                                        <input type="radio" id="city_pickup" name="pickup_location" value="city">
-                                        Central Location in St. Catharines (location TBD)
-                                    </label>
+                            <p class="is-hidden form-error help is-danger" data-target="share_type">Please choose a Share Size!</p>
+                        </div>
+                        <div class="field" id="who_chooses_field">
+                            <label class="label">CSA Who Chooses?</label>
+                            <div class="control">
+                                <div class="field">
+                                    <div class="control">
+                                        <label class="radio">
+                                            <input type="radio" id="free_choice" name="choice_type" value="my_choice">
+                                            My Choice - You choose the contents of this weeks share
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="control">
+                                        <label class="radio">
+                                            <input type="radio" id="promistery_picks" name="choice_type" value="promistery">
+                                            Promistery Picks - We pack the box with an assortment of the available produce
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="field">
-                                <div class="control">
-                                    <label class="radio">
-                                        <input type="radio" id="delivery" name="pickup_location" value="delivery">
-                                        Delivery $7.50/week for 20 weeks (St Catharines)
-                                    </label>
-                                    <div class="field is-hidden mt-3 ml-5 mb-5" id="address_field">
-                                        <label class="label">Address</label>
-                                        <div class="control">
-                                            <div class="field">
-                                                <label class="label">Address Line 1</label>
-                                                <div class="control">
-                                                    <input class="input" id="address1" type="text" placeholder="">
-                                                </div>
-                                                <p class="is-hidden form-error help is-danger" data-target="address1">Please enter your address.</p>
+                            <p class="is-hidden form-error help is-danger" data-target="who_chooses_field">Who would you like to choose the share contents?</p>
+                        </div>
+                        <div class="field" id="share_pick_up_location">
+                            <label class="label">Share Pick up Location</label>
+                            <div class="control">
+                                <div class="field">
+                                    <div class="control">
+                                        <label class="radio">
+                                            <input type="radio" id="prom_pickup" name="pickup_location" value="promistery">
+                                            The Promistery
+                                        </label>
+                                        <div class="field is-hidden mt-3 ml-5 mb-5" id="pick_up_day_field">
+                                            <label class="label">Pick up Day</label>
+                                            <div class="control">
+                                                <label class="radio">
+                                                    <input type="radio" id="pick_up_day_tuesday" name="pick_up_day" value="tuesday">
+                                                    Tuesday
+                                                </label>
+                                                <label class="radio">
+                                                    <input type="radio" id="pick_up_day_friday" name="pick_up_day" value="friday">
+                                                    Friday
+                                                </label>
                                             </div>
-                                            <div class="field">
-                                                <label class="label">Address Line 2</label>
-                                                <div class="control">
-                                                    <input class="input" id="address2" type="text" placeholder="">
+                                            <p class="is-hidden form-error help is-danger" data-target="pick_up_day_field">Please pick a pickup day</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="control">
+                                        <label class="radio">
+                                            <input type="radio" id="city_pickup" name="pickup_location" value="city">
+                                            Central Location in St. Catharines (location TBD)
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="control">
+                                        <label class="radio">
+                                            <input type="radio" id="delivery" name="pickup_location" value="delivery">
+                                            Delivery $7.50/week for 20 weeks (St Catharines)
+                                        </label>
+                                        <div class="field is-hidden mt-3 ml-5 mb-5" id="address_field">
+                                            <label class="label">Address</label>
+                                            <div class="control">
+                                                <div class="field">
+                                                    <label class="label">Address Line 1</label>
+                                                    <div class="control">
+                                                        <input class="input" id="address1" type="text" placeholder="">
+                                                    </div>
+                                                    <p class="is-hidden form-error help is-danger" data-target="address1">Please enter your address.</p>
                                                 </div>
-                                            </div>
-                                            <div class="field">
-                                                <label class="label">City</label>
-                                                <div class="control">
-                                                    <input class="input" id="city" type="text" placeholder="">
+                                                <div class="field">
+                                                    <label class="label">Address Line 2</label>
+                                                    <div class="control">
+                                                        <input class="input" id="address2" type="text" placeholder="">
+                                                    </div>
                                                 </div>
-                                                <p class="is-hidden form-error help is-danger" data-target="city">Please enter your city.</p>
-                                            </div>
-                                            <div class="field">
-                                                <label class="label">Postal Code</label>
-                                                <div class="control">
-                                                    <input class="input" id="postal_code" type="text" placeholder="">
+                                                <div class="field">
+                                                    <label class="label">City</label>
+                                                    <div class="control">
+                                                        <input class="input" id="city" type="text" placeholder="">
+                                                    </div>
+                                                    <p class="is-hidden form-error help is-danger" data-target="city">Please enter your city.</p>
                                                 </div>
-                                                <p class="is-hidden form-error help is-danger" data-target="postal_code">Please enter a valid Postal Code.</p>
-                                            </div>
-                                            <div class="field">
-                                                <label class="label">Phone Number</label>
-                                                <div class="control">
-                                                    <input class="input" id="telephone" type="text" placeholder="">
+                                                <div class="field">
+                                                    <label class="label">Postal Code</label>
+                                                    <div class="control">
+                                                        <input class="input" id="postal_code" type="text" placeholder="">
+                                                    </div>
+                                                    <p class="is-hidden form-error help is-danger" data-target="postal_code">Please enter a valid Postal Code.</p>
                                                 </div>
-                                                <p class="is-hidden form-error help is-danger" data-target="telephone">Please enter your phone number, so we can contact you incase of an issue with delivery.</p>
-                                            </div>
+                                                <div class="field">
+                                                    <label class="label">Phone Number</label>
+                                                    <div class="control">
+                                                        <input class="input" id="telephone" type="text" placeholder="">
+                                                    </div>
+                                                    <p class="is-hidden form-error help is-danger" data-target="telephone">Please enter your phone number, so we can contact you incase of an issue with delivery.</p>
+                                                </div>
                                                 <div class="field">
                                                     <label class="label">Buzzer</label>
                                                     <div class="control">
@@ -421,35 +422,35 @@
                             </div>
                         </div>
                         <div class="field" id="payment_preference">
-                        <label class="label">Payment Preference</label>
-                        <div class="control">
-                            <div class="field">
-                                <div class="control">
-                                    <label class="radio">
-                                        <input type="radio" id="pp_etranfer" name="payment_preference_rad" value="etransfer">
-                                        E-Transfer
-                                    </label>
+                            <label class="label">Payment Preference</label>
+                            <div class="control">
+                                <div class="field">
+                                    <div class="control">
+                                        <label class="radio">
+                                            <input type="radio" id="pp_etranfer" name="payment_preference_rad" value="etransfer">
+                                            E-Transfer
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="control">
+                                        <label class="radio">
+                                            <input type="radio" id="pp_cash" name="payment_preference_rad" value="cash">
+                                            Cash
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="control">
+                                        <label class="radio">
+                                            <input type="radio" id="pp_square" name="payment_preference_rad" value="square">
+                                            Square Invoice - Credit/Debit + <b>2.9% Merchant Fee</b>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="field">
-                                <div class="control">
-                                    <label class="radio">
-                                        <input type="radio" id="pp_cash" name="payment_preference_rad" value="cash">
-                                        Cash
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="control">
-                                    <label class="radio">
-                                        <input type="radio" id="pp_square" name="payment_preference_rad" value="square">
-                                        Square Invoice - Credit/Debit + <b>2.9% Merchant Fee</b>
-                                    </label>
-                                </div>
-                            </div>
+                            <p class="is-hidden form-error help is-danger" data-target="payment_preference">Please choose how you will like to pay.</p>
                         </div>
-                        <p class="is-hidden form-error help is-danger" data-target="payment_preference">Please choose how you will like to pay.</p>
-                    </div>
                         <div class="field is-horizontal">
                             <label class="label">Total: </label>
                             <div class="control">
@@ -465,32 +466,32 @@
                                 <p class="is-hidden form-error help is-danger" data-target="terms_and_conditions">Accept the terms to continue.</p>
                             </div>
                         </div>
-                        </div>
-                        <div class="field is-grouped">
-                            <div class="control">
-                                <button id="form_to_pdf" class="button is-link">Download Filled Form</button>
-                            </div>
-                        </div>
                     </div>
-                    <div class="content has-text-centered">
-                        <span id="promistery_email_address" class="faux-button is-large mb-3 mt-3 has-text-primary">promistery@protonmail.com</span>
-                        <a class="button is-primary is-large mb-3 mt-3" id="copy_email_1"><i class="fas fa-copy"></i></a>
+                    <div class="field is-grouped">
+                        <div class="control">
+                            <button id="form_to_pdf" class="button is-link">Download Filled Form</button>
+                        </div>
                     </div>
                 </div>
-                <footer class="card-footer">
-                    <p class="card-footer-item">
-                        <span>
-                            Follow on <a href="https://www.instagram.com/the.promistery/" target="_blank"><i class="fab fa-instagram-square"></i></a>
-                        </span>
-                    </p>
-                    <p class="card-footer-item">
-                        <span>
-                            Follow on <a href="https://www.facebook.com/the.promistery"><i class="fab fa-facebook-square"></i>
-                            </a>
-                        </span>
-                    </p>
-                </footer>
+                <div class="content has-text-centered">
+                    <span id="promistery_email_address" class="faux-button is-large mb-3 mt-3 has-text-primary">promistery@protonmail.com</span>
+                    <a class="button is-primary is-large mb-3 mt-3" id="copy_email_1"><i class="fas fa-copy"></i></a>
+                </div>
             </div>
+            <footer class="card-footer">
+                <p class="card-footer-item">
+                    <span>
+                        Follow on <a href="https://www.instagram.com/the.promistery/" target="_blank"><i class="fab fa-instagram-square"></i></a>
+                    </span>
+                </p>
+                <p class="card-footer-item">
+                    <span>
+                        Follow on <a href="https://www.facebook.com/the.promistery"><i class="fab fa-facebook-square"></i>
+                        </a>
+                    </span>
+                </p>
+            </footer>
+        </div>
         </div>
     </section>
     <section class="section" id="about">
@@ -899,8 +900,8 @@
 
                 if (!errors) {
                     //create pdf
-                    var element = document.getElementById('csa_signup_form_pdf_print');
-                    var opt = {
+                    let element = document.getElementById('csa_signup_form_pdf_print');
+                    const opt = {
                         margin: 1,
                         filename: 'promistery_csa_form.pdf',
                         image: { type: 'jpeg', quality: 0.98 },
@@ -909,12 +910,38 @@
                     };
 
                     // New Promise-based usage:
-                    html2pdf().set(opt).from(element).save();
+                    // 
+                    let form_to_pdf_print = element;
+                    form_to_pdf_print.id = "temp_print_form"
+
+                    let input_to_p = form_to_pdf_print.querySelectorAll("input.input");
+
+                    document.body.appendChild(form_to_pdf_print);
+
+                    const elements_to_text = ['csa_form_name', 'csa_form_email', 'family_share', 'couple_share', 'single_share', 'referral', 'total']
+
+                    for (const i in elements_to_text) {
+                        let element_to_change = document.querySelector('#temp_print_form #' + elements_to_text[i])
+                        let div_text = document.createElement('div', { class: 'content print_field', })
+                        div_text.textContent = element_to_change.value
+                        element_to_change.parentNode.replaceChild(div_text, element_to_change)
+					}
+                   if(delivery){
+                   	const elements_to_text = ['buzzer', 'telephone', 'postal_code', 'city', 'address2', 'address1']
+                   	  for (const i in elements_to_text) {
+                        let element_to_change = document.querySelector('#temp_print_form #' + elements_to_text[i])
+                        let div_text = document.createElement('div', { class: 'content print_field', })
+                        div_text.textContent = element_to_change.value
+                        element_to_change.parentNode.replaceChild(div_text, element_to_change)
+					}
+                   }
+                    html2pdf().set(opt).from(form_to_pdf_print).save();
+                    form_to_pdf_print.remove();
                 }
             });
         }
         const $pickupOptions = Array.prototype.slice.call(document.querySelectorAll('[name="pickup_location"]'), 0);
-        
+
         for (var i = 0; i < $pickupOptions.length; i++) {
             $pickupOptions[i].addEventListener('change', function() {
                 calculateTotal()
