@@ -912,10 +912,9 @@
 
                     // New Promise-based usage:
                     // 
-                    let form_to_pdf_print = element;
+                    let form_to_pdf_print = element.cloneNode(true);
+                    
                     form_to_pdf_print.id = "temp_print_form"
-
-                    let input_to_p = form_to_pdf_print.querySelectorAll("input.input");
 
                     document.body.appendChild(form_to_pdf_print);
 
