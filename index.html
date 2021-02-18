@@ -455,6 +455,14 @@
                                     <div class="field">
                                         <div class="control">
                                             <label class="radio">
+                                                <input type="radio" id="pp_crypto" name="payment_preference_rad" value="crypto">
+                                                Cryptos - <b>BCH, BTC, LTC, DGB, ADA, ZIL, LINK, DOT, THETA, and XLM.</b>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <div class="control">
+                                            <label class="radio">
                                                 <input type="radio" id="pp_square" name="payment_preference_rad" value="square">
                                                 Square Invoice - Credit/Debit + <b>2.9% Merchant Fee</b>
                                             </label>
@@ -919,8 +927,9 @@
                 const pp_etranfer = document.getElementById('pp_etranfer').checked;
                 const pp_cash = document.getElementById('pp_cash').checked;
                 const pp_square = document.getElementById('pp_square').checked;
+                const pp_crypto = document.getElementById('pp_crypto').checked;
 
-                if (!pp_etranfer && !pp_cash && !pp_square) {
+                if (!pp_etranfer && !pp_cash && !pp_square && !pp_crypto) {
                     errors = true;
                     $terms_field = document.getElementById('payment_preference');
                     $terms_field.classList.add('is-danger-field');
